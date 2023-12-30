@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "Abdulhakeem-docker-tfstate"
+  bucket = "atrihomes-docker-tfstate"
      
   lifecycle {
     prevent_destroy = true
