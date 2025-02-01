@@ -1,10 +1,10 @@
 provider "aws" {
   region = "us-east-1"
-  profile= "Abdulhakeem"
+  profile= "MST"
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "atrihomes-docker-tfstate"
+  bucket = "tm-docker-tfstate"
      
   lifecycle {
     prevent_destroy = true
@@ -21,7 +21,7 @@ resource "aws_s3_bucket_versioning" "terraform_state" {
 
 resource "aws_dynamodb_table" "terraform_state_lock" {
   name           = "app-state"
-  read_capacity  = 1
+  read_capacity  = 2
   write_capacity = 1
   hash_key       = "LockID"
 
