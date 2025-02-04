@@ -63,6 +63,30 @@ resource "aws_security_group" "ec2_security_group" {
     cidr_blocks      = ["0.0.0.0/0"]
   }
 
+  
+  ingress {
+    description      = "ssh access"
+    from_port        = 4000
+    to_port          = 4000
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description      = "ssh access"
+    from_port        = 3000
+    to_port          = 3000
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+ingress {
+    description      = "ssh access"
+    from_port        = 5000
+    to_port          = 5000
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
   ingress {
     description      = "http proxy-nginx access"
     from_port        = 80
@@ -127,4 +151,8 @@ resource "aws_instance" "ec2_instance1" {
 # print the url of the docker server
 output "website_url" {
   value     = join ("", ["http://", aws_instance.ec2_instance1.public_ip, ":", "8080"])
+}
+
+output "ssh_command" {
+  value = join("", ["ssh -i Olamide.pem ubuntu@", aws_instance.ec2_instance1.public_dns])
 }
